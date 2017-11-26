@@ -11,13 +11,22 @@
   <body>
 
     <div class='container'>
+
       <div class="text-danger">
         <%= flash[:alert] %>
       </div>
       <div class="text-success">
         <%= flash[:notice] %>
       </div>
+
+      <% if current_user %>
+        <%= current_user.email %> | <%= link_to 'Sign Out', signout_path %>
+      <% else %>
+        <%= link_to 'Sign Up', signup_path %> | <%= link_to 'Sign In', signin_path %>
+      <% end %>
+
       <%= yield %>
+      
     </div>
 
   </body>
