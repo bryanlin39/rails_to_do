@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
 
   def create
-    @user = User.authenticate(params[:email], params[:password])
-    if @user
+    @user = User.find_by_email(params[:email])
+    if @user && @user.authenticate(params[:password])
       flash[:notice] = 'Signed in'
       session[:user_id] = @user.id
       redirect_to '/'
